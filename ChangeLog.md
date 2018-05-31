@@ -9,6 +9,8 @@
 
   * Fix Google auth using new API (Matt West).
 
+  * Use persistent forking python processes for v3 questions (Matt West).
+
 * __3.0.0__ - 2018-05-23
 
   * Add improved support for very large file downloads (Nathan Walters).

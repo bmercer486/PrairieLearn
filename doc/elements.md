@@ -187,7 +187,36 @@ A = np.array([[1.23], [4.56]])
 If a variable `v` is a complex object, you should use `import prairielearn as pl` and `data['params'][params_name] = pl.to_json(v)`.
 
 
-## `pl-figure` element
+
+## `pl_matrix_component_input` element
+
+```html
+<pl_matrix_component_input answers_name="C" comparison="sigfig" digits="3" label="$AB=$" />
+```
+
+Attribute | Type | Default | Description
+--- | --- | --- | ---
+`answers_name` | string | — | Variable name to store data in.
+`weight` | integer | 1 | Weight to use when computing a weighted average score over elements.
+`label` | text | — | A prefix to display before the input box (e.g., `label="$F =$"`).
+`comparison` | "relabs", "sigfig", or "decdig" | "relabs" | How to grade. "relabs" uses relative ("rtol") and absolute ("atol") tolerances. "sigfig" and "decdig" use "digits" significant or decimal digits.
+`rtol` | number | 1e-2 | Relative tolerance for `comparison="relabs"`.
+`atol` | number | 1e-8 | Absolute tolerance for `comparison="relabs"`.
+`digits` | integer | 2 | number of digits that must be correct for `comparison="sigfig"` or `comparison="decdig"`.
+`format_type` | string | 'latex' | format of the answer displayed in the answer and submission panels.
+`allow_partial_credit` | boolean | False | Whether or not to allow credit for each correct matrix component. By default, the variable is graded as correct only when all matrix components are correct.
+`allow_feedback` | boolean | False | Whether or not to allow feedback indicating which matrix components are incorrect.
+
+In the question panel, a `pl_matrix_component_input` element displays a grid of input fields with the same shape of the variable stored in `answers_name` (only 2D arrays of real numbers can be stored in `answers_name`). The question will only be graded when all matrix components are entered.
+
+In the answer panel, a `pl_matrix_component_input` element displays the correct answer, in either latex or python format, depending on the attribute `format_type`.
+
+In the submission panel, a `pl_matrix_component_input` element displays either the submitted answer (in the same format as the answer panel), or a note that the submitted answer was invalid (with an explanation of why). There is an option to display feedback, indicating which matrix components are incorrect.
+
+
+
+
+## `pl_figure` element
 
 ```html
 <!-- show a figure from an existing file -->

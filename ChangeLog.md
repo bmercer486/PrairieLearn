@@ -4,6 +4,7 @@
 * __next version__ - XXXX-XX-XX
 
   * Add string input element (Mariana Silva)
+  * Add matrix grid input element (Mariana Silva)
 
   * Add student name and clickable e-mail address information to issue reports (James Balamuta).
 

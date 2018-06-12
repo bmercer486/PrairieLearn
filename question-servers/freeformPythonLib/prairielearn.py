@@ -839,10 +839,10 @@ def latex_array_from_numpy_array(A, presentation_type='f', digits=2):
 
         if len(A.shape) > 2:
             raise ValueError('bmatrix can at most display two dimensions')
-        lines = np.array2string(A, formatter = formatter).replace('[', '').replace(']', '').splitlines()
+        lines = np.array2string(A, formatter=formatter).replace('[', '').replace(']', '').splitlines()
         rv = [r'\begin{bmatrix}']
-        rv += ['  ' + ' & '.join(l.split()).replace("'","")  + r'\newline' for l in lines]
-        rv +=  [r'\end{bmatrix}']
+        rv += ['  ' + ' & '.join(l.split()).replace("'", "") + r'\newline' for l in lines]
+        rv += [r'\end{bmatrix}']
         return ''.join(rv)
 
 

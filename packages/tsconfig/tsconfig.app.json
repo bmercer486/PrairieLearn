@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "strict": true,
+    "useUnknownInCatchVariables": false,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+
+    // Support native ESM
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  }
+}

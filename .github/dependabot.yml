@@ -1,0 +1,89 @@
+version: 2
+updates:
+  - package-ecosystem: docker
+    directories:
+      - '/'
+      - '/graders/*'
+      - '/images/*'
+      - '/workspaces/*'
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+
+  - package-ecosystem: npm
+    directories:
+      - '/'
+      - '/workspaces/desktop/server'
+      - '/workspaces/xtermjs/src'
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    ignore:
+      # Recent versions of `bootstrap-table` broke behavior we rely on:
+      # https://github.com/wenzhixin/bootstrap-table/issues/6745
+      - dependency-name: 'bootstrap-table'
+      # We're putting off this upgrade for now:
+      # https://github.com/PrairieLearn/PrairieLearn/pull/6835
+      - dependency-name: 'fabric'
+      # Recent versions of `threejs` don't include the pre-bundled file we rely on.
+      - dependency-name: 'three'
+      # novnc 1.5.0+ no longer publishes ESM files:
+      # https://github.com/novnc/noVNC/issues/1792
+      - dependency-name: '@novnc/novnc'
+      # ua-parser-js 2.x changes its license to a less permissive license:
+      # https://github.com/faisalman/ua-parser-js/issues/680
+      - dependency-name: 'ua-parser-js'
+        versions: ['>=2']
+      # These upgrades are blocked on Sentry:
+      # https://github.com/getsentry/sentry-javascript/issues/15737
+      # https://github.com/getsentry/sentry-javascript/issues/15213
+      - dependency-name: '@opentelemetry/*'
+      # We use Yarn `resolutions` to point these to our Preact compat packages.
+      # We don't ever care about which version is actually listed in `package.json` files.
+      - dependency-name: 'preact' # https://github.com/PrairieLearn/PrairieLearn/pull/12763
+      - dependency-name: 'react'
+      - dependency-name: 'react-dom'
+
+    groups:
+      # Many OpenTelemetry packages are still pre-v1, so updates frequently won't
+      # be considered patch/minor updates. We always want to bump these all
+      # together, so we'll include a special group for them. Dependabot evaluates
+      # groups in the order that they're listed, so this will take precedence over
+      # the catch-all patch/minor group below.
+      #
+      # These upgrades are currently ignored, see the note above.
+      opentelemetry:
+        patterns:
+          - '@opentelemetry/*'
+      all-patch-minor:
+        update-types:
+          - 'patch'
+          - 'minor'
+
+  - package-ecosystem: pip
+    directories:
+      - '/'
+      - '/docs'
+      - '/graders/c'
+      - '/graders/python'
+      - '/workspaces/jupyterlab-base'
+      - '/workspaces/jupyterlab-python'
+      - '/workspaces/vscode-python'
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    ignore:
+      # We're not ready to jump to the latest version of `numpy` yet.
+      - dependency-name: 'numpy'
+        versions: ['>=2']
+    groups:
+      all-patch-minor:
+        update-types:
+          - 'patch'
+          - 'minor'

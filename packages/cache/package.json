@@ -1,0 +1,21 @@
+{
+  "name": "@prairielearn/cache",
+  "version": "2.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput"
+  },
+  "dependencies": {
+    "@prairielearn/logger": "workspace:^",
+    "@prairielearn/sentry": "workspace:^",
+    "ioredis": "^5.7.0",
+    "lru-cache": "^11.2.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@prairielearn/tsconfig": "workspace:^",
+    "typescript": "^5.9.2"
+  }
+}

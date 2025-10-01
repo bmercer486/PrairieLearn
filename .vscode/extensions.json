@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "Tobermory.es6-string-html",
+    "charliermarsh.ruff",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "dorzey.vscode-sqlfluff",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "redhat.vscode-yaml",
+    "supabase.postgrestools",
+    "tamasfe.even-better-toml",
+    "vitest.explorer"
+  ]
+}
